@@ -36,7 +36,7 @@ one.addEventListener("click", checkAnswerOne);
 two.addEventListener("click", checkAnswerTwo);
 three.addEventListener("click", checkAnswerThree);
 four.addEventListener("click", checkAnswerFour);
-
+var index = 0;
 
 
 function startPage() {
@@ -47,10 +47,19 @@ function startPage() {
   document.getElementById("three").innerHTML = "";
   document.getElementById("four").innerHTML = "";
   document.querySelector("#qq").addEventListener("click", function() {
+    questions = questionsArray[index];
+    questionBuilder();
+    console.log(questions);
     quizTime();
   }) 
 }
-  
+function loop(){
+  if (index < questionsArray.length) {
+    questions = questionsArray[index];
+    questionBuilder();
+    console.log(questions);
+  }  
+}      
 function quizTime() {
   
   var timeLeft = 300;
@@ -61,13 +70,7 @@ function quizTime() {
         } 
         mainEl.textContent = "" + timeLeft;
     }, 1000);
-    var index = 0;
-    while (index < questionsArray.length); {
-      questions = questionsArray[index];
-      questionBuilder();
-    }
-
-}
+  }
 
 
 function checkAnswerOne(){
@@ -75,32 +78,36 @@ function checkAnswerOne(){
   if (ansOne === questions.correctChoice){
     document.getElementById("two").innerHTML = "correct";
   } else {
-    timeLeft -+ 30;
+    //timeLeft -+ 30;
   }
+  loop()
 }
 function checkAnswerTwo(){
   index++
   if (ansTwo === questions.correctChoice){
     document.getElementById("two").innerHTML = "correct";
   } else {
-    timeLeft -+ 30;
+    //timeLeft -+ 30;
   }
+  loop()
 }
 function checkAnswerThree(){
   index++
   if (ansThree === questions.correctChoice){
     document.getElementById("two").innerHTML = "correct";
   } else {
-    timeLeft -+ 30;
+    //timeLeft -+ 30;
   }
+  loop()
 }
 function checkAnswerFour(){
   index++
   if (ansFour === questions.correctChoice){
     document.getElementById("two").innerHTML = "correct";
   } else {
-    timeLeft -+ 30;
+    //timeLeft -+ 30;
   }
+  loop()
 }
 function questionBuilder(){
   document.getElementById("qq").innerHTML = "Quiz Questions";
