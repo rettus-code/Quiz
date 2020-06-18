@@ -1,3 +1,4 @@
+//Object to hold objects
 var questions = {
   question: "",
   ansOne: "",
@@ -6,7 +7,7 @@ var questions = {
   ansfour: "",
   correctChoice: null,
 }
-
+//array of object questions to form 10 questions
 var questionsArray = [questions = {
   question: "What is a click counter?",
   ansOne: "1. A surface you can click your mouse on.",
@@ -49,7 +50,7 @@ questions = {
 },
 questions = {
   question: "What is functional programming?",
-  ansOne: "1. Program tha workand are easy to grasp.",
+  ansOne: "1. Program that work and are easy to grasp.",
   anstwo: "2. is a programming paradigm that favors function over form often expecting code to be slightly expended for easier interpretation.",
   ansthree: "3. is a programming paradigm that relies heavily on object inheritance.",
   ansfour: "4. is a programming paradigm where programs are constructed by applying and composing functions.",
@@ -80,7 +81,7 @@ questions = {
   correctChoice: 2,
 },
 ]
-startPage();
+
 
 
 var mainEl = document.querySelector("#seconds");
@@ -88,13 +89,16 @@ var one = document.querySelector("#one");
 var two = document.querySelector("#two");
 var three = document.querySelector("#three");
 var four = document.querySelector("#four");
+var highScores = document.querySelector(".navbar-brand");
 one.addEventListener("click", checkAnswerOne);
 two.addEventListener("click", checkAnswerTwo);
 three.addEventListener("click", checkAnswerThree);
 four.addEventListener("click", checkAnswerFour);
+highScores.addEventListener("click", scores);
 var index = 0;
 var timeLeft = 300;
-
+var score = 0;
+startPage();
 function startPage() {
   document.getElementById("qq").innerHTML = "Click here to start!";
   document.getElementById("quest").innerHTML = "Try your best at this JS test!";
@@ -114,84 +118,71 @@ function loop(){
     questions = questionsArray[index];
     questionBuilder();
     console.log(questions);
+    console.log(index);
+  } else {
+     score = timeLeft;
+     endGame(); 
   }  
 }      
 function quizTime() {
-  
-
-    var timeInterval = setInterval(function() {
+   var timeInterval = setInterval(function() {
         timeLeft--;
         if (timeLeft === 0) {
+          score = timeLeft;
           clearInterval(timeInterval);
+          endGame(); 
         } 
         mainEl.textContent = "" + timeLeft;
     }, 1000);
-  }
-
-
+}
 function checkAnswerOne(){
   index++
   if (1 === questions.correctChoice){
-    var tag = document.createElement("p");
-    var t = document.createTextNode("correct")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
+    correct();
   } else {
-    var tag = document.createElement("p");
-    var t = document.createTextNode("incorrect")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
-    timeLeft -= 30;
+    incorrect();
   }
-  loop()
+  loop();
 }
 function checkAnswerTwo(){
   index++
   if (2 === questions.correctChoice){
-    var tag = document.createElement("p");
-    var t = document.createTextNode("correct")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
+    correct();
   } else {
-    var tag = document.createElement("p");
-    var t = document.createTextNode("incorrect")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
-    timeLeft -= 30;
+    incorrect();
   }
-  loop()
+  loop();
 }
 function checkAnswerThree(){
   index++
   if (3 === questions.correctChoice){
-    var tag = document.createElement("p");
-    var t = document.createTextNode("correct")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
+    correct();
   } else {
-    var tag = document.createElement("p");
-    var t = document.createTextNode("incorrect")
-    tag.appendChild(t)
-    document.getElementById("result").appendChild(tag);
-    timeLeft -= 30;
+    incorrect();
   }
-  loop()
+  loop();
 }
 function checkAnswerFour(){
   index++
   if (4 === questions.correctChoice){
-    var tag = document.createElement("p");
+    correct();
+  } else {
+    incorrect();
+  }
+  loop();
+}
+function correct(){
+  var tag = document.createElement("p");
     var t = document.createTextNode("correct")
     tag.appendChild(t)
     document.getElementById("result").appendChild(tag);
-  } else {
-    var tag = document.createElement("p");
+}
+function incorrect(){
+  var tag = document.createElement("p");
     var t = document.createTextNode("incorrect")
     tag.appendChild(t)
     document.getElementById("result").appendChild(tag);
     timeLeft -= 30;
-  }
-  loop()
 }
 function questionBuilder(){
   document.getElementById("qq").innerHTML = "Quiz Questions";
@@ -201,7 +192,19 @@ function questionBuilder(){
   document.getElementById("three").innerHTML = questions.ansthree;
   document.getElementById("four").innerHTML = questions.ansfour;
 }
+function endGame(){
+  var element = document.getElementById("form");
+  element.parentNode.removeChild(element);
+  document.getElementById("result").remove("P");
+  var user = prompt("Your intials?");
+  var tag = document.createElement("h1");
+  var t = document.createTextNode("Game Over! " + user +" Your score = " + score);
+  tag.appendChild(t)
+  document.body.append(tag);
+}
+function scores(){
+  console.log(score);
 
-console.log(questionsArray);
-console.log(questions);
+}
+
 
