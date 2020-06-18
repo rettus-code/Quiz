@@ -37,7 +37,7 @@ two.addEventListener("click", checkAnswerTwo);
 three.addEventListener("click", checkAnswerThree);
 four.addEventListener("click", checkAnswerFour);
 var index = 0;
-
+var timeLeft = 300;
 
 function startPage() {
   document.getElementById("qq").innerHTML = "Click here to start!";
@@ -62,7 +62,7 @@ function loop(){
 }      
 function quizTime() {
   
-  var timeLeft = 300;
+
     var timeInterval = setInterval(function() {
         timeLeft--;
         if (timeLeft === 0) {
@@ -75,37 +75,65 @@ function quizTime() {
 
 function checkAnswerOne(){
   index++
-  if (ansOne === questions.correctChoice){
-    document.getElementById("two").innerHTML = "correct";
+  if (1 === questions.correctChoice){
+    var tag = document.createElement("p");
+    var t = document.createTextNode("correct")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
   } else {
-    //timeLeft -+ 30;
+    var tag = document.createElement("p");
+    var t = document.createTextNode("incorrect")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
+    timeLeft -= 30;
   }
   loop()
 }
 function checkAnswerTwo(){
   index++
-  if (ansTwo === questions.correctChoice){
-    document.getElementById("two").innerHTML = "correct";
+  if (2 === questions.correctChoice){
+    var tag = document.createElement("p");
+    var t = document.createTextNode("correct")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
   } else {
-    //timeLeft -+ 30;
+    var tag = document.createElement("p");
+    var t = document.createTextNode("incorrect")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
+    timeLeft -= 30;
   }
   loop()
 }
 function checkAnswerThree(){
   index++
-  if (ansThree === questions.correctChoice){
-    document.getElementById("two").innerHTML = "correct";
+  if (3 === questions.correctChoice){
+    var tag = document.createElement("p");
+    var t = document.createTextNode("correct")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
   } else {
-    //timeLeft -+ 30;
+    var tag = document.createElement("p");
+    var t = document.createTextNode("incorrect")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
+    timeLeft -= 30;
   }
   loop()
 }
 function checkAnswerFour(){
   index++
-  if (ansFour === questions.correctChoice){
-    document.getElementById("two").innerHTML = "correct";
+  if (4 === questions.correctChoice){
+    var tag = document.createElement("p");
+    var t = document.createTextNode("correct")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
   } else {
-    //timeLeft -+ 30;
+    var tag = document.createElement("p");
+    var t = document.createTextNode("incorrect")
+    tag.appendChild(t)
+    document.getElementById("result").appendChild(tag);
+    timeLeft -= 30;
   }
   loop()
 }
