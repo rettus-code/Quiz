@@ -95,6 +95,8 @@ two.addEventListener("click", checkAnswerTwo);
 three.addEventListener("click", checkAnswerThree);
 four.addEventListener("click", checkAnswerFour);
 highScores.addEventListener("click", scores);
+var userInitial = "";
+var storedPoints = "";
 var index = 0;
 var timeLeft = 300;
 var score = 0;
@@ -201,10 +203,30 @@ function endGame(){
   var t = document.createTextNode("Game Over! " + user +" Your score = " + score);
   tag.appendChild(t)
   document.body.append(tag);
+  storeScores(user);
 }
 function scores(){
-  console.log(score);
+  var archive = [];
+    for (var i = 0; i<localStorage.length; i++) {
+      archive[i] = localStorage.getItem();
 
+      console.log(localStorage.key(i))
+      console.log(archive[i])
+    }
+  /*for (var i = 0; i < scoreList.length; i++){
+    console.log(scoreList[i].user);
+    console.log(scoreList[i].points);
+  }*/
+}
+function storeScores(user){
+  /*var scoreCard = {
+    userName: user,
+    points: score,
+  };
+  scoreCards = JSON.parse(localStorage.getItem("scoreBoards")) + scoreCard;
+  console.log(scoreCards);
+  localStorage.setItem("scoreBoards", JSON.stringify(scoreCards));*/
+  localStorage.setItem(user, JSON.stringify(score));
 }
 
 
